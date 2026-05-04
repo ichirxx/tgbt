@@ -1715,8 +1715,6 @@ def _fetch_yopmail_code(login):
        return _fetch_ygmail_code(login)
     sess = requests.Session()
     headers = {
-        "user-agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Mobdef _fetch_ygmail_code(login):
-ile Safari/537.36",
         "accept": "text/html,application/json,*/*;q=0.9",
         "accept-language": "en-US,en;q=0.9",
         "referer": f"https://{domain}/",
