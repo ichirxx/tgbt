@@ -1695,22 +1695,21 @@ def _fetch_yopmail_code(login):
                     )
                     body = BeautifulSoup(mr.text, 'html.parser').get_text()
                     code = re.search(r'\b(\d{5,8})\b', body)
-                  if code:
+                    if code:
                         return code.group(1)
                 except Exception:
                     pass
         except Exception:
             pass
     return None
-def _fetch_lcxmail_code(login):
-                try:
+  def _fetch_lcxmail_code(login):                try:
                     mr = sess.get(
                         f"https://lcxmail.site/mail.php?b={login}&id={mid}&to=mail",
                         headers=headers, timeout=12
                     )
                     body = BeautifulSoup(mr.text, 'html.parser').get_text()
                     code = re.search(r'\b(\d{5,8})\b', body)
-                  if code:
+                    if code:
                         return code.group(1)
                 except Exception:
                     pass
@@ -1725,7 +1724,7 @@ def _fetch_lcxmail_code(login):
                     )
                     body = BeautifulSoup(mr.text, 'html.parser').get_text()
                     code = re.search(r'\b(\d{5,8})\b', body)
-                  if code:
+                    if code:
                         return code.group(1)
                 except Exception:
                     pass
@@ -1740,7 +1739,7 @@ def _fetch_ygmail_code(login):
                     )
                     body = BeautifulSoup(mr.text, 'html.parser').get_text()
                     code = re.search(r'\b(\d{5,8})\b', body)
-                  if code:
+                    if code:
                         return code.group(1)
                 except Exception:
                     pass
