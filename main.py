@@ -1702,13 +1702,58 @@ def _fetch_yopmail_code(login):
         except Exception:
             pass
     return None
+    def _fetch_lcxmail_code(login):
+    try:
+        mr = sess.get(
+            f"https://lcxmail.site/inbox/{login}",
+            headers=headers,
+        )
+        body = BeautifulSoup(mr.text, 'html.parser')
+        code = re.search(r'\b\d{6}\b', body.get_text())
+        if code:
+            return code.group()
+    except Exception:
+        pass
+    return None
+    def _fetch_harakirimail_code(login):
+    try:
+        mr = sess.get(
+            f"https://harakirimail.com/inbox/{login}",
+            headers=headers,
+        )
+        body = BeautifulSoup(mr.text, 'html.parser')
+        code = re.search(r'\b\d{6}\b', body.get_text())
+        if code:
+            return code.group()
+    except Exception:
+        pass
+    return None
+    def _fetch_ygmail_code(login):
+    try:
+        mr = sess.get(
+            f"https://ygmail.cfd/inbox/{login}",
+            headers=headers,
+        )
+        body = BeautifulSoup(mr.text, 'html.parser')
+        code = re.search(r'\b\d{6}\b', body.get_text())
+        if code:
+            return code.group()
+    except Exception:
+        pass
+    return None
 def get_temp_code(email):
     login = email.split('@')[0].lower()
     domain = email.split('@')[1].lower() if '@' in email else ''
     if email in _1secmail_inboxes:
         return _fetch_1secmail_code(email)
+    if domain == 'lcxmail.site':
+        return _fetch_lcxmail_code(login)
+    if domain == 'harakirimail.com':
+       return _fetch_harakirimail_code(login)
     if domain == 'yopmail.com':
-        return _fetch_yopmail_code(login)
+       return _fetch_yopmail_code(login)
+    if domain == 'ygmail.cfd':
+       return _fetch_ygmail_code(login)
     sess = requests.Session()
     headers = {
         "user-agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Mobile Safari/537.36",
