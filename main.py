@@ -1702,8 +1702,7 @@ def _fetch_yopmail_code(login):
         except Exception:
             pass
     return None
-def _fetch_lcxmail_code(login):
-                try:
+                    try:
                     mr = sess.get(
                         f"https://lcxmail.site/mail.php?b={login}&id={mid}&to=mail",
                         headers=headers, timeout=12
@@ -1714,9 +1713,10 @@ def _fetch_lcxmail_code(login):
                         return code.group(1)
                 except Exception:
                     pass
+        except Exception:
+            pass
     return None
-def _fetch_harakirimail_code(login):
-                try:
+                    try:
                     mr = sess.get(
                         f"https://harakirimail.com/mail.php?b={login}&id={mid}&to=mail",
                         headers=headers, timeout=12
@@ -1727,9 +1727,10 @@ def _fetch_harakirimail_code(login):
                         return code.group(1)
                 except Exception:
                     pass
+        except Exception:
+            pass
     return None
-def _fetch_ygmail_code(login):
-                try:
+                    try:
                     mr = sess.get(
                         f"https://ygmail.cfd/mail.php?b={login}&id={mid}&to=mail",
                         headers=headers, timeout=12
@@ -1740,6 +1741,8 @@ def _fetch_ygmail_code(login):
                         return code.group(1)
                 except Exception:
                     pass
+        except Exception:
+            pass
     return None
 def get_temp_code(email):
     login = email.split('@')[0].lower()
