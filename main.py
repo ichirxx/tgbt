@@ -1703,7 +1703,7 @@ def _fetch_yopmail_code(login):
             pass
     return None
     def _fetch_lcxmail_code(login):
-    try:
+        try:
         mr = sess.get(
             f"https://lcxmail.site/inbox/{login}",
             headers=headers,
@@ -1716,7 +1716,7 @@ def _fetch_yopmail_code(login):
         pass
     return None
     def _fetch_harakirimail_code(login):
-    try:
+        try:
         mr = sess.get(
             f"https://harakirimail.com/inbox/{login}",
             headers=headers,
@@ -1729,7 +1729,7 @@ def _fetch_yopmail_code(login):
         pass
     return None
     def _fetch_ygmail_code(login):
-    try:
+        try:
         mr = sess.get(
             f"https://ygmail.cfd/inbox/{login}",
             headers=headers,
