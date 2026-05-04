@@ -786,7 +786,7 @@ async def cb_stop(callback: types.CallbackQuery):
 
 # ================== TEXT INPUT HANDLER ==================
 @dp.message_handler()
-_async def handle_text(message: types.Message):
+async def handle_text(message: types.Message):
     uid      = message.from_user.id
     chat_id  = message.chat.id
     entered  = (message.text or "").strip()
