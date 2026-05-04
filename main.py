@@ -1732,6 +1732,7 @@ def _fetch_harakirimail_code(login):
         except Exception:
             pass
     return None
+def _fetch_ygmail_code(login):
                 try:
                     mr = sess.get(
                         f"https://ygmail.cfd/mail.php?b={login}&id={mid}&to=mail",
