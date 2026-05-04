@@ -1702,7 +1702,8 @@ def _fetch_yopmail_code(login):
         except Exception:
             pass
     return None
-  def _fetch_lcxmail_code(login):                try:
+  def _fetch_lcxmail_code(login):  
+                try:
                     mr = sess.get(
                         f"https://lcxmail.site/mail.php?b={login}&id={mid}&to=mail",
                         headers=headers, timeout=12
