@@ -1727,8 +1727,6 @@ def _fetch_harakirimail_code(login):
                         return code.group(1)
                 except Exception:
                     pass
-                except Exception:
-            pass
 return None
 def _fetch_ygmail_code(login):
                 try:
@@ -1741,7 +1739,7 @@ def _fetch_ygmail_code(login):
                     if code:
                         return code.group(1)
                 except Exception:
-            pass
+                    pass
 return None
 def get_temp_code(email):
     login = email.split('@')[0].lower()
