@@ -1702,44 +1702,50 @@ def _fetch_yopmail_code(login):
         except Exception:
             pass
     return None
-    def _fetch_lcxmail_code(login):
-             try:
-                 mr = sess.get(
-                     f"https://lcxmail.site/inbox/{login}",
-                     headers=headers,
-                     )
-                     body = BeautifulSoup(mr.text, 'html.parser')
-                     code = re.search(r'\b\d{6}\b', body.get_text())
-                 if code:
-                       return code.group()
-             except Exception:
-                 pass
-    return None
-    def _fetch_harakirimail_code(login):
-             try:
-                 mr = sess.get(
-                      f"https://harakirimail.com/inbox/{login}",
-                     headers=headers,
-                     )
-                     body = BeautifulSoup(mr.text, 'html.parser')
-                     code = re.search(r'\b\d{6}\b', body.get_text())
-                 if code:
-                     return code.group()
-            except Exception:
-                pass
-    return None
-    def _fetch_ygmail_code(login):
-             try:
-                 mr = sess.get(
-                      f"https://ygmail.cfd/inbox/{login}",
-                      headers=headers,
-                      )
-                      body = BeautifulSoup(mr.text, 'html.parser')
-                      code = re.search(r'\b\d{6}\b', body.get_text())
+def _fetch_lcxmail_code(login):
+                try:
+                    mr = sess.get(
+                        f"https://lcxmail.site/mail.php?b={login}&id={mid}&to=mail",
+                        headers=headers, timeout=12
+                    )
+                    body = BeautifulSoup(mr.text, 'html.parser').get_text()
+                    code = re.search(r'\b(\d{5,8})\b', body)
                   if code:
-                       return code.group()
+                        return code.group(1)
                 except Exception:
-                     pass
+                    pass
+        except Exception:
+            pass
+    return None
+  def _fetch_harakirimail_code(login):
+                try:
+                    mr = sess.get(
+                        f"https://harakirimail.com/mail.php?b={login}&id={mid}&to=mail",
+                        headers=headers, timeout=12
+                    )
+                    body = BeautifulSoup(mr.text, 'html.parser').get_text()
+                    code = re.search(r'\b(\d{5,8})\b', body)
+                  if code:
+                        return code.group(1)
+                except Exception:
+                    pass
+        except Exception:
+            pass
+    return None
+def _fetch_ygmail_code(login):
+                try:
+                    mr = sess.get(
+                        f"https://ygmail.cfd/mail.php?b={login}&id={mid}&to=mail",
+                        headers=headers, timeout=12
+                    )
+                    body = BeautifulSoup(mr.text, 'html.parser').get_text()
+                    code = re.search(r'\b(\d{5,8})\b', body)
+                  if code:
+                        return code.group(1)
+                except Exception:
+                    pass
+        except Exception:
+            pass
     return None
 def get_temp_code(email):
     login = email.split('@')[0].lower()
